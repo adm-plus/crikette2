@@ -64,6 +64,11 @@
       function onClickSpeed(param) {
           speed = param;
       }
+	  
+      function myVideoEnd() {
+        alert("Bravo, vous avez terminé ce thème! ");
+        window.location.reload(true);
+      }
 
       // Process the video to show
       function startVideo() {
@@ -121,7 +126,7 @@
   </tr>
   <tr align="center">
     <td style="background-color: #7f7f7f; width: 640px; height: 480px; ">
-			<video id="myVideo" muted="true" onended="myOnended()" poster="videos/00.jpg">
+			<video id="myVideo" muted="true" onended="myVideoEnd()" poster="videos/00.jpg">
       	Your browser does not support HTML5 video.
     	</video>
     </td>
