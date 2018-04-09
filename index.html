@@ -18,7 +18,6 @@
     }
   </style>
   <script type="text/javascript">
-      let i = 1;
       let j = 1;
       let mode = "";
       let speed = 0.2;
@@ -40,12 +39,12 @@
       	thisOne = document.forms[0].myOption.selectedIndex;
         if (thisOne === 0) { return; }
         if (runOnce === 1) { window.location.reload(true); }
-        //alert("Votre choix est: " + thisOne);
+        alert("Votre choix est: " + thisOne);
         
 	      thisVideo = document.getElementById("myVideo");
   	    thisSource = document.createElement("source");
 				thisSource.setAttribute('src', srcVideo[thisOne]);
-				//alert(srcVideo[thisOne]);
+				alert(srcVideo[thisOne]);
 				
         runOnce=1;
 				thisVideo.appendChild(thisSource);
@@ -65,11 +64,6 @@
           speed = param;
       }
 	  
-      function myVideoEnd() {
-        alert("Bravo, vous avez terminé ce thème! ");
-        window.location.reload(true);
-      }
-
       // Process the video to show
       function startVideo() {
           if (mode === "play") {
@@ -100,6 +94,12 @@
               window.location.reload(true);
           }
       }
+
+      function myVideoEnd() {
+          alert("Bravo, vous avez terminé ce thème! ");
+          window.location.reload(true);
+      }
+
   </script>
 </head>
 <body>
@@ -111,22 +111,22 @@
       <label for="myOption">Choisir un thème:</label>
       <select name="myOption" id="myOption" onchange="getOption()">
                 <option>Faire votre choix</option>
-                <option>1-Main-identifier</option>
-                <option>2-Main-imaginer-faire</option>
-                <option>3-Main-le-faire</option>
-                <option>4-pied-identifier</option>
-                <option>5-pied-imaginer-faire</option>
-                <option>6-pied-le-faire</option>
-                <option>7-visage-identifier</option>
-                <option>8-visage-imaginer-faire</option>
-                <option>9-visage-le-faire</option>      	
+                <option>Main - Phase 1 - Identifier le côté gauche ou droit</option>
+                <option>Main - Phase 2 - Imaginez-vous faire le même mouvement</option>
+                <option>Main - Phase 3 - Miroir, faire le mouvement affiché</option>
+                <option>Pied - Phase 1 - Identifier le côté gauche ou droit</option>
+                <option>Pied - Phase 2 - Imaginez-vous faire le même mouvement</option>
+                <option>Pied - Phase 3 - Miroir, faire le mouvement affiché</option>
+                <option>Visage - Phase 1 - Identifier le côté gauche ou droit</option>
+                <option>Visage - Phase 2 - Imaginez-vous faire le même mouvement</option>
+                <option>Visage - Phase 3 - Miroir, faire le mouvement affiché</option>
       </select>
       </form>
     </td>
   </tr>
   <tr align="center">
     <td style="background-color: #7f7f7f; width: 640px; height: 480px; ">
-			<video id="myVideo" muted="true" onended="myVideoEnd()" poster="videos/00.jpg">
+			<video id="myVideo" onended="myVideoEnd()" poster="videos/00.jpg">
       	Your browser does not support HTML5 video.
     	</video>
     </td>
