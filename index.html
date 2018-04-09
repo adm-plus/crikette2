@@ -39,12 +39,12 @@
       	thisOne = document.forms[0].myOption.selectedIndex;
         if (thisOne === 0) { return; }
         if (runOnce === 1) { window.location.reload(true); }
-        alert("Votre choix est: " + thisOne);
+        //alert("Votre choix est: " + thisOne);
         
 	      thisVideo = document.getElementById("myVideo");
   	    thisSource = document.createElement("source");
 				thisSource.setAttribute('src', srcVideo[thisOne]);
-				alert(srcVideo[thisOne]);
+				//alert(srcVideo[thisOne]);
 				
         runOnce=1;
 				thisVideo.appendChild(thisSource);
