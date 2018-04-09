@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>For Crikette 2</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      outline: none;
+    }
+
+    body {
+      background-color: #444444;
+    }
+
+    td {
+      background-color: #7f7f7f;
+    }
+  </style>
+  <script type="text/javascript">
+      let i = 1;
+      let j = 1;
+      let mode = "";
+      let speed = 0.2;
+      let runOnce = 0;
+      let thisOne = "";
+      let thisVideo = "";
+      let thisSource = "";
+      let pathVideo = 'videos/';
+      let srcVideo = [];
+
+      // Load array path and video
+      for (j = 1; j < 10; j++) {
+      	srcVideo[j] = pathVideo + j + ".mp4";
+      }
+
+      // From the option theme we get the video to play
+      function getOption() {
+             
+      	thisOne = document.forms[0].myOption.selectedIndex;
+        if (thisOne === 0) { return; }
+        if (runOnce === 1) { window.location.reload(true); }
+        //alert("Votre choix est: " + thisOne);
+        
+	      thisVideo = document.getElementById("myVideo");
+  	    thisSource = document.createElement("source");
+				thisSource.setAttribute('src', srcVideo[thisOne]);
+				//alert(srcVideo[thisOne]);
+				
+        runOnce=1;
+				thisVideo.appendChild(thisSource);
+      	thisVideo.load();
+      	thisVideo.playbackRate = speed;
+      	
+      	setTimeout("startVideo()", (thisVideo.playbackRate = speed));
+      }
+
+      // The action mode for the Slide show
+      function onClickMode(param) {
+          mode = param;
+      }
+
+      // The selected speed demanded
+      function onClickSpeed(param) {
+          speed = param;
+      }
+
+      // Process the video to show
+      function startVideo() {
+          if (mode === "play") {
+              document.getElementById("play").disabled = "disabled";
+              document.getElementById("pause").disabled = "";
+              document.getElementById("stop").disabled = "";
+              
+              thisVideo = document.getElementById("myVideo");
+  	    			thisSource = document.getElementById("source");
+      				thisVideo.play();
+      				
+              setTimeout("startVideo()", (thisVideo.playbackRate = speed));
+          }
+          else if (mode === "pause") {
+              document.getElementById("pause").disabled = "disabled";
+              document.getElementById("play").disabled = "";
+              document.getElementById("play").value = "Resume";
+
+              thisVideo = document.getElementById("myVideo");
+  	    			thisSource = document.getElementById("source");
+      				thisVideo.pause();
+          }
+          else if (mode === "stop") {
+              document.getElementById("play").disabled = "";
+              document.getElementById("play").value = "Play";
+              document.getElementById("pause").disabled = "disabled";
+              document.getElementById("stop").disabled = "disabled";
+              window.location.reload(true);
+          }
+      }
+  </script>
+</head>
+<body>
+<table style="width: 680px; height: 600px;" border="2">
+  <tbody>
+  <tr align="center">
+    <td style="height: 40px; background-color: #e6e6e6; width: 680px;">
+      <form>
+      <label for="myOption">Choisir un thème:</label>
+      <select name="myOption" id="myOption" onchange="getOption()">
+                <option>Faire votre choix</option>
+                <option>1-Main-identifier</option>
+                <option>2-Main-imaginer-faire</option>
+                <option>3-Main-le-faire</option>
+                <option>4-pied-identifier</option>
+                <option>5-pied-imaginer-faire</option>
+                <option>6-pied-le-faire</option>
+                <option>7-visage-identifier</option>
+                <option>8-visage-imaginer-faire</option>
+                <option>9-visage-le-faire</option>      	
+      </select>
+      </form>
+    </td>
+  </tr>
+  <tr align="center">
+    <td style="background-color: #7f7f7f; width: 640px; height: 480px; ">
+			<video id="myVideo" muted="true" onended="myOnended()" poster="videos/00.jpg">
+      	Your browser does not support HTML5 video.
+    	</video>
+    </td>
+  </tr>
+  <tr align="left">
+    <td style="height: 20px; background-color: #e6e6e6; width: 680px;">
+      <input id="speed1x"  value="Speed 1x " onclick="onClickSpeed('0.20');" type="button">
+      <input id="speed2x"  value="Speed 2x " onclick="onClickSpeed('0.40');" type="button">
+      <input id="speed3x"  value="Speed 3x " onclick="onClickSpeed('0.60');" type="button">
+      <input id="speed4x"  value="Speed 4x " onclick="onClickSpeed('0.80');" type="button">
+      <input id="speed5x"  value="Speed 5x " onclick="onClickSpeed('1.00');" type="button">
+      <input id="speed10x" value="Speed 10x" onclick="onClickSpeed('20.0');" type="button">
+      <input id="play"  value="Play"  onclick="onClickMode('play');startVideo();" type="button">
+      <input id="pause" value="Pause" onclick="onClickMode('pause');startVideo();" disabled="disabled" type="button">
+      <input id="stop"  value="Stop"  onclick="onClickMode('stop');startVideo();"  disabled="disabled" type="button">
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
